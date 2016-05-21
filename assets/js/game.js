@@ -57,13 +57,10 @@ function earthBender(){
 function playerAttack(){
 	opponent.health = opponent.health - player.attackPower;
 	player.attackPower += 7;
-	console.log("Opponent Health: " + opponent.health);
-  console.log("Player Attack Power: " + player.attackPower);
 }
 
 function opponentAttack(){
 	player.health = player.health - opponent.counterStrike;
-	console.log("Player Health: " + player.health);
 }
 
 
@@ -85,7 +82,6 @@ function selectPlayerDOM(){
 				}else if(select === "airBender"){
 					player = new airBender();
 				}
-				console.log(player.name);
 				delete buttons[player.name];
 				selectOpponant();
 			});
@@ -110,7 +106,6 @@ function selectPlayerDOM(){
 					}else if(select === "airBender"){
 						opponent = new airBender();
 					}
-					console.log(opponent.name);
 					delete buttons[opponent.name];
 					battleArena();
 				});
@@ -154,7 +149,6 @@ function battleArena(){
     	$('#yes').on("click", function(){
     	$('#battleLog').empty();
     	selectOpponant();
-      console.log(buttons);
     	})
       $('#no').on("click", function(){
         resetGame();
