@@ -18,7 +18,7 @@ var buttons = {
 function airBender () {
 	this.attackPower = 1;
 	this.health = 100;
-	this.counterStrike = this.attackPower * 3;
+	this.counterStrike = this.attackPower * 35;
 	this.name = "Air Bender";
 	this.value = "airBender";
 	this.image = "assets/images/yang.jpeg";
@@ -47,7 +47,7 @@ function waterBender(){
 function earthBender(){
 	this.attackPower = 1;
 	this.health = 100;
-	this.counterStrike = this.attackPower * 50;//FIX!!!
+	this.counterStrike = this.attackPower * 30;
 	this.name = "Earth Bender";
 	this.value = "earthBender";
 	this.image = "assets/images/toph.jpeg";
@@ -122,7 +122,7 @@ function battleArena(){
 				<h1>VS</h1>
 				<img src="${opponent.image}"><p class='health'>Health: ${opponent.health}</p>
         		<button id="attack">Attack</button>`);
-      if(player.health >= 1 && opponent.health >= 1){
+      if(player.health >= 0 && opponent.health >= 0){
       $("#attack").on("click", function(){
         playerAttack();
         opponentAttack();
@@ -137,7 +137,7 @@ function battleArena(){
     };
 
     function lose(){
-    	$("#battleLog").append('<p>You Lose!</p><p>Play Again?</p><button id="yes">Yes</button>');
+    	$("#battleLog").append('<b>You Lose!</b><p>Play Again?</p><button id="yes">Yes</button>');
     	$('#yes').on("click", function(){
     	$('#battleLog').empty()
     	resetGame();
@@ -146,7 +146,11 @@ function battleArena(){
     }
 
     function win(){
-    	$("#battleLog").append('<p>You won!</p><p>Continue?</p><button id="yes">Yes</button><button id="no">No</button>');
+      //wierd bug that if you fight earth bender as your second opponent you still win
+      if(player.health <= 0){
+        lose();
+      }else{
+    	$("#battleLog").append('<b>You won!</b><p>Continue?</p><button id="yes">Yes</button><button id="no">No</button>');
     	$('#yes').on("click", function(){
     	$('#battleLog').empty();
     	selectOpponant();
@@ -158,6 +162,7 @@ function battleArena(){
         selectPlayerDOM();
       })
     }
+  }
 
     function winOrLose(){
       if(Object.keys(buttons).length === 0){
