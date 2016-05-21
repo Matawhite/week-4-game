@@ -18,7 +18,7 @@ var buttons = {
 function airBender () {
 	this.attackPower = 1;
 	this.health = 100;
-	this.counterStrike = this.attackPower * 35;
+	this.counterStrike = this.attackPower * 10;
 	this.name = "Air Bender";
 	this.value = "airBender";
 	this.image = "assets/images/yang.jpeg";
@@ -47,7 +47,7 @@ function waterBender(){
 function earthBender(){
 	this.attackPower = 1;
 	this.health = 100;
-	this.counterStrike = this.attackPower * 30;
+	this.counterStrike = this.attackPower * 20;
 	this.name = "Earth Bender";
 	this.value = "earthBender";
 	this.image = "assets/images/toph.jpeg";
@@ -111,6 +111,8 @@ function selectPlayerDOM(){
 				});
 		};
 
+
+// look at this for fixes
 function battleArena(){
 		$('#content').html(
 				`<img src="${player.image}"><p class='health'>Health: ${player.health}</p>
@@ -122,8 +124,8 @@ function battleArena(){
         playerAttack();
         opponentAttack();
           $("#battleLog").html
-          (`<p>${player.name} hits ${opponent.name} for ${player.attackPower} points of damage</p>
-            <p>${opponent.name} hits ${player.name} for ${opponent.counterStrike} points of damage</p>`)
+          (`<p>${player.name} hits opponent for ${player.attackPower} points of damage</p>
+            <p>${opponent.name} hits player for ${opponent.counterStrike} points of damage</p>`)
           battleArena();
       	})
       }else{
